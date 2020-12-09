@@ -1,0 +1,108 @@
+[
+	{
+		"championName": "Zyra",
+		"isBot": false,
+		"isDead": false,
+		"items": [],
+		"level": 1,
+		"position": "",
+		"rawChampionName": "game_character_displayname_Zyra",
+		"rawSkinName": "game_character_skin_displayname_Zyra_6",
+		"respawnTimer": 0.0,
+		"runes": {
+			"keystone": {
+				"displayName": "Dark Harvest",
+				"id": 8128,
+				"rawDescription": "perk_tooltip_DarkHarvest",
+				"rawDisplayName": "perk_displayname_DarkHarvest"
+			},
+			"primaryRuneTree": {
+				"displayName": "Domination",
+				"id": 8100,
+				"rawDescription": "perkstyle_tooltip_7200",
+				"rawDisplayName": "perkstyle_displayname_7200"
+			},
+			"secondaryRuneTree": {
+				"displayName": "Precision",
+				"id": 8000,
+				"rawDescription": "perkstyle_tooltip_7201",
+				"rawDisplayName": "perkstyle_displayname_7201"
+			}
+		},
+		"scores": {
+			"assists": 0,
+			"creepScore": 0,
+			"deaths": 0,
+			"kills": 0,
+			"wardScore": 0.0
+		},
+		"skinID": 6,
+		"skinName": "Coven Zyra Prestige Edition",
+		"summonerName": "CurryFurious",
+		"summonerSpells": {
+			"summonerSpellOne": {
+				"displayName": "Flash",
+				"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+			},
+			"summonerSpellTwo": {
+				"displayName": "Ignite",
+				"rawDescription": "GeneratedTip_SummonerSpell_SummonerDot_Description",
+				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerDot_DisplayName"
+			}
+		},
+		"team": "ORDER"
+	},
+	{
+		"championName": "Jax",
+		"isBot": true,
+		"isDead": false,
+		"items": [],
+		"level": 1,
+		"position": "",
+		"rawChampionName": "game_character_displayname_Jax",
+		"respawnTimer": 0.0,
+		"runes": {
+			"keystone": {
+				"displayName": "Press the Attack",
+				"id": 8005,
+				"rawDescription": "perk_tooltip_PressTheAttack",
+				"rawDisplayName": "perk_displayname_PressTheAttack"
+			},
+			"primaryRuneTree": {
+				"displayName": "Precision",
+				"id": 8000,
+				"rawDescription": "perkstyle_tooltip_7201",
+				"rawDisplayName": "perkstyle_displayname_7201"
+			},
+			"secondaryRuneTree": {
+				"displayName": "Sorcery",
+				"id": 8200,
+				"rawDescription": "perkstyle_tooltip_7202",
+				"rawDisplayName": "perkstyle_displayname_7202"
+			}
+		},
+		"scores": {
+			"assists": 0,
+			"creepScore": 0,
+			"deaths": 0,
+			"kills": 0,
+			"wardScore": 0.0
+		},
+		"skinID": 0,
+		"summonerName": "Jax Bot",
+		"summonerSpells": {
+			"summonerSpellOne": {
+				"displayName": "Ghost",
+				"rawDescription": "GeneratedTip_SummonerSpell_SummonerHaste_Description",
+				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerHaste_DisplayName"
+			},
+			"summonerSpellTwo": {
+				"displayName": "Exhaust",
+				"rawDescription": "GeneratedTip_SummonerSpell_SummonerExhaust_Description",
+				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerExhaust_DisplayName"
+			}
+		},
+		"team": "CHAOS"
+	}
+]

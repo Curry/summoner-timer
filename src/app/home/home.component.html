@@ -3,5 +3,13 @@
     {{ 'PAGES.HOME.TITLE' | translate }}
   </h1>
 
+  <div *ngFor="let item of test | async as list">
+    <div>
+      <img [src]="item.championIcon">
+    </div>
+    <img [src]="item.summonerOne.image">
+    <img [src]="item.summonerTwo.image">
+  </div>
+
   <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
 </div>
