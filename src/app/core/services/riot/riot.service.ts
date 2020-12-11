@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import * as ApiPlayerModel from "../../models/api/player.model";
-import { LocalPlayer } from "../../models/local/player.model";
-import { forkJoin, from, Observable, Observer, of } from "rxjs";
-import { combineAll, map, mergeMap, tap } from "rxjs/operators";
+import { LocalPlayer, SummonerCooldowns } from "../../models/local/player.model";
+import { forkJoin, from, interval, Observable, Observer, of, timer } from "rxjs";
+import { combineAll, map, mergeMap, takeUntil, tap } from "rxjs/operators";
 import * as test from "./testdata.json";
+import { AllData } from "../../models/api/alldata.model";
 
 @Injectable({
   providedIn: "root",
@@ -16,58 +16,59 @@ export class RiotService {
 
   constructor(private http: HttpClient) {}
 
-  public getPlayers = (): Observable<LocalPlayer.Player[]> =>
-    // this.http.get<ApiPlayerModel.Player[]>(`${this.localUrl}/playerlist`)
-    of((test as any).default as ApiPlayerModel.Player[]).pipe(
+  public getAllInfo = (): Observable<LocalPlayer.Player[]> =>
+    of((test as any).default as AllData).pipe(
+      map((allData) =>
+        allData.allPlayers.filter(
+          (player) =>
+            player.team !=
+            allData.allPlayers.find(
+              (player) =>
+                player.summonerName == allData.activePlayer.summonerName
+            ).team
+        )
+      ),
       mergeMap((players) =>
         from(players).pipe(
           map((player) =>
             forkJoin([
-              this.getChampionIcon(player.championName),
+              this.getChampionIcon(player.rawChampionName),
               this.getSummonerIcon(
-                /_(Summoner[^S].*?)_/.exec(
-                  player.summonerSpells.summonerSpellOne.rawDescription
-                )[1]
+                player.summonerSpells.summonerSpellOne.rawDescription
               ),
               this.getSummonerIcon(
-                /_(Summoner[^S].*?)_/.exec(
-                  player.summonerSpells.summonerSpellTwo.rawDescription
-                )[1]
+                player.summonerSpells.summonerSpellTwo.rawDescription
               ),
-            ]).pipe(map((val) => ({ player, val })))
+            ]).pipe(
+              map(
+                (images) =>
+                  ({
+                    championName: player.championName,
+                    championIcon: images[0],
+                    level: player.level,
+                    summonerName: player.summonerName,
+                    team: player.team,
+                    summonerOne: {
+                      image: images[1],
+                      name: player.summonerSpells.summonerSpellOne.displayName,
+                    },
+                    summonerTwo: {
+                      image: images[2],
+                      name: player.summonerSpells.summonerSpellTwo.displayName,
+                    },
+                  } as LocalPlayer.Player)
+              )
+            )
           ),
           combineAll()
-        )
-      ),
-      map((val) =>
-        val.map(
-          ({ player, val }) =>
-            ({
-              championName: player.championName,
-              championIcon: val[0],
-              level: player.level,
-              summonerName: player.summonerName,
-              team: player.team,
-              summonerOne: {
-                image: val[1],
-                name: player.summonerSpells.summonerSpellTwo.displayName,
-              },
-              summonerTwo: {
-                image: val[2],
-                name: player.summonerSpells.summonerSpellTwo.displayName,
-              },
-            } as LocalPlayer.Player)
         )
       )
     );
 
-  public getActivePlayer = (): Observable<string> =>
-    this.http.get<string>(`${this.localUrl}/activeplayername`);
-
-  public getChampionIcon = (champName: string): Observable<any> =>
+  public getChampionIcon = (rawName: string): Observable<any> =>
     this.http
       .get(
-        `${this.dataDragonUrl}/cdn/${this.version}/img/champion/${champName}.png`,
+        `${this.dataDragonUrl}/cdn/${this.version}/img/champion/${/_([^_]+)$/.exec(rawName)[1]}.png`,
         {
           responseType: "blob",
         }
@@ -75,11 +76,13 @@ export class RiotService {
       .pipe(mergeMap(this.parseImage));
 
   public getSummonerIcon = (
-    summonerSpell: string
+    rawName: string
   ): Observable<string | ArrayBuffer> =>
     this.http
       .get(
-        `${this.dataDragonUrl}/cdn/${this.version}/img/spell/${summonerSpell}.png`,
+        `${this.dataDragonUrl}/cdn/${this.version}/img/spell/${
+          /_(Summoner(?!Spell).*?)_/.exec(rawName)[1]
+        }.png`,
         {
           responseType: "blob",
         }

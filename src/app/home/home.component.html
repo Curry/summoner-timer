@@ -1,15 +1,11 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
-
+  <button mat-raised-button color="primary">Create new node</button>
   <div *ngFor="let item of test | async as list">
     <div>
-      <img [src]="item.championIcon">
+      <img [src]="item.championIcon" width="128">
     </div>
-    <img [src]="item.summonerOne.image">
+    <img [src]="item.summonerOne.image" (click)="potato(item.summonerOne)">
+    <mat-progress-spinner *ngIf="item.summonerOne.timer" mode="determinate" [value]="item.summonerOne.timer"></mat-progress-spinner>
     <img [src]="item.summonerTwo.image">
   </div>
-
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
 </div>

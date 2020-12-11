@@ -1,108 +1,739 @@
-[
-	{
-		"championName": "Zyra",
-		"isBot": false,
-		"isDead": false,
-		"items": [],
-		"level": 1,
-		"position": "",
-		"rawChampionName": "game_character_displayname_Zyra",
-		"rawSkinName": "game_character_skin_displayname_Zyra_6",
-		"respawnTimer": 0.0,
-		"runes": {
+{
+	"activePlayer": {
+		"abilities": {
+			"E": {
+				"abilityLevel": 0,
+				"displayName": "Wild Rush",
+				"id": "SamiraE",
+				"rawDescription": "GeneratedTip_Spell_SamiraE_Description",
+				"rawDisplayName": "GeneratedTip_Spell_SamiraE_DisplayName"
+			},
+			"Passive": {
+				"displayName": "Daredevil Impulse",
+				"id": "SamiraPassive",
+				"rawDescription": "GeneratedTip_Passive_SamiraPassive_Description",
+				"rawDisplayName": "GeneratedTip_Passive_SamiraPassive_DisplayName"
+			},
+			"Q": {
+				"abilityLevel": 0,
+				"displayName": "Flair",
+				"id": "SamiraQ",
+				"rawDescription": "GeneratedTip_Spell_SamiraQ_Description",
+				"rawDisplayName": "GeneratedTip_Spell_SamiraQ_DisplayName"
+			},
+			"R": {
+				"abilityLevel": 0,
+				"displayName": "Inferno Trigger",
+				"id": "SamiraR",
+				"rawDescription": "GeneratedTip_Spell_SamiraR_Description",
+				"rawDisplayName": "GeneratedTip_Spell_SamiraR_DisplayName"
+			},
+			"W": {
+				"abilityLevel": 0,
+				"displayName": "Blade Whirl",
+				"id": "SamiraW",
+				"rawDescription": "GeneratedTip_Spell_SamiraW_Description",
+				"rawDisplayName": "GeneratedTip_Spell_SamiraW_DisplayName"
+			}
+		},
+		"championStats": {
+			"abilityPower": 0.0,
+			"armor": 26.0,
+			"armorPenetrationFlat": 0.0,
+			"armorPenetrationPercent": 1.0,
+			"attackDamage": 25.0,
+			"attackRange": 0.0,
+			"attackSpeed": 0.6579999923706055,
+			"bonusArmorPenetrationPercent": 1.0,
+			"bonusMagicPenetrationPercent": 1.0,
+			"cooldownReduction": 0.0,
+			"critChance": 0.0,
+			"critDamage": 0.0,
+			"currentHealth": 530.0,
+			"healthRegenRate": 0.0,
+			"lifeSteal": 0.0,
+			"magicLethality": 0.0,
+			"magicPenetrationFlat": 0.0,
+			"magicPenetrationPercent": 1.0,
+			"magicResist": 30.0,
+			"maxHealth": 530.0,
+			"moveSpeed": 335.0,
+			"physicalLethality": 0.0,
+			"resourceMax": 348.8800048828125,
+			"resourceRegenRate": 0.0,
+			"resourceType": "MANA",
+			"resourceValue": 348.8800048828125,
+			"spellVamp": 0.0,
+			"tenacity": 0.0
+		},
+		"currentGold": 0.0,
+		"fullRunes": {
+			"generalRunes": [
+				{
+					"displayName": "Conqueror",
+					"id": 8010,
+					"rawDescription": "perk_tooltip_Conqueror",
+					"rawDisplayName": "perk_displayname_Conqueror"
+				},
+				{
+					"displayName": "Presence of Mind",
+					"id": 8009,
+					"rawDescription": "perk_tooltip_PresenceOfMind",
+					"rawDisplayName": "perk_displayname_PresenceOfMind"
+				},
+				{
+					"displayName": "Legend: Bloodline",
+					"id": 9103,
+					"rawDescription": "perk_tooltip_9103",
+					"rawDisplayName": "perk_displayname_9103"
+				},
+				{
+					"displayName": "Last Stand",
+					"id": 8299,
+					"rawDescription": "perk_tooltip_8234",
+					"rawDisplayName": "perk_displayname_8234"
+				},
+				{
+					"displayName": "Taste of Blood",
+					"id": 8139,
+					"rawDescription": "perk_tooltip_TasteOfBlood",
+					"rawDisplayName": "perk_displayname_TasteOfBlood"
+				},
+				{
+					"displayName": "Ravenous Hunter",
+					"id": 8135,
+					"rawDescription": "perk_tooltip_RavenousHunter",
+					"rawDisplayName": "perk_displayname_RavenousHunter"
+				}
+			],
 			"keystone": {
-				"displayName": "Dark Harvest",
-				"id": 8128,
-				"rawDescription": "perk_tooltip_DarkHarvest",
-				"rawDisplayName": "perk_displayname_DarkHarvest"
+				"displayName": "Conqueror",
+				"id": 8010,
+				"rawDescription": "perk_tooltip_Conqueror",
+				"rawDisplayName": "perk_displayname_Conqueror"
 			},
 			"primaryRuneTree": {
+				"displayName": "Precision",
+				"id": 8000,
+				"rawDescription": "perkstyle_tooltip_7201",
+				"rawDisplayName": "perkstyle_displayname_7201"
+			},
+			"secondaryRuneTree": {
 				"displayName": "Domination",
 				"id": 8100,
 				"rawDescription": "perkstyle_tooltip_7200",
 				"rawDisplayName": "perkstyle_displayname_7200"
 			},
-			"secondaryRuneTree": {
-				"displayName": "Precision",
-				"id": 8000,
-				"rawDescription": "perkstyle_tooltip_7201",
-				"rawDisplayName": "perkstyle_displayname_7201"
-			}
+			"statRunes": [
+				{
+					"id": 5005,
+					"rawDescription": "perk_tooltip_StatModAttackSpeed"
+				},
+				{
+					"id": 5008,
+					"rawDescription": "perk_tooltip_StatModAdaptive"
+				},
+				{
+					"id": 5002,
+					"rawDescription": "perk_tooltip_StatModArmor"
+				}
+			]
 		},
-		"scores": {
-			"assists": 0,
-			"creepScore": 0,
-			"deaths": 0,
-			"kills": 0,
-			"wardScore": 0.0
-		},
-		"skinID": 6,
-		"skinName": "Coven Zyra Prestige Edition",
-		"summonerName": "CurryFurious",
-		"summonerSpells": {
-			"summonerSpellOne": {
-				"displayName": "Flash",
-				"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
-				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
-			},
-			"summonerSpellTwo": {
-				"displayName": "Ignite",
-				"rawDescription": "GeneratedTip_SummonerSpell_SummonerDot_Description",
-				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerDot_DisplayName"
-			}
-		},
-		"team": "ORDER"
-	},
-	{
-		"championName": "Jax",
-		"isBot": true,
-		"isDead": false,
-		"items": [],
 		"level": 1,
-		"position": "",
-		"rawChampionName": "game_character_displayname_Jax",
-		"respawnTimer": 0.0,
-		"runes": {
-			"keystone": {
-				"displayName": "Press the Attack",
-				"id": 8005,
-				"rawDescription": "perk_tooltip_PressTheAttack",
-				"rawDisplayName": "perk_displayname_PressTheAttack"
+		"summonerName": "CurryFurious"
+	},
+	"allPlayers": [
+		{
+			"championName": "Samira",
+			"isBot": false,
+			"isDead": false,
+			"items": [
+				{
+					"canUse": true,
+					"consumable": true,
+					"count": 1,
+					"displayName": "Poro-Snax",
+					"itemID": 2052,
+					"price": 0,
+					"rawDescription": "game_item_description_2052",
+					"rawDisplayName": "game_item_displayname_2052",
+					"slot": 6
+				}
+			],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Samira",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Conqueror",
+					"id": 8010,
+					"rawDescription": "perk_tooltip_Conqueror",
+					"rawDisplayName": "perk_displayname_Conqueror"
+				},
+				"primaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				}
 			},
-			"primaryRuneTree": {
-				"displayName": "Precision",
-				"id": 8000,
-				"rawDescription": "perkstyle_tooltip_7201",
-				"rawDisplayName": "perkstyle_displayname_7201"
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
 			},
-			"secondaryRuneTree": {
-				"displayName": "Sorcery",
-				"id": 8200,
-				"rawDescription": "perkstyle_tooltip_7202",
-				"rawDisplayName": "perkstyle_displayname_7202"
-			}
-		},
-		"scores": {
-			"assists": 0,
-			"creepScore": 0,
-			"deaths": 0,
-			"kills": 0,
-			"wardScore": 0.0
-		},
-		"skinID": 0,
-		"summonerName": "Jax Bot",
-		"summonerSpells": {
-			"summonerSpellOne": {
-				"displayName": "Ghost",
-				"rawDescription": "GeneratedTip_SummonerSpell_SummonerHaste_Description",
-				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerHaste_DisplayName"
+			"skinID": 0,
+			"summonerName": "CurryFurious",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Cleanse",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerBoost_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerBoost_DisplayName"
+				}
 			},
-			"summonerSpellTwo": {
-				"displayName": "Exhaust",
-				"rawDescription": "GeneratedTip_SummonerSpell_SummonerExhaust_Description",
-				"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerExhaust_DisplayName"
-			}
+			"team": "CHAOS"
 		},
-		"team": "CHAOS"
+		{
+			"championName": "Ashe",
+			"isBot": false,
+			"isDead": false,
+			"items": [],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Ashe",
+			"rawSkinName": "game_character_skin_displayname_Ashe_7",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Press the Attack",
+					"id": 8005,
+					"rawDescription": "perk_tooltip_PressTheAttack",
+					"rawDisplayName": "perk_displayname_PressTheAttack"
+				},
+				"primaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 7,
+			"skinName": "Marauder Ashe",
+			"summonerName": "pepsicola4life",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Ignite",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerDot_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerDot_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				}
+			},
+			"team": "ORDER"
+		},
+		{
+			"championName": "Malzahar",
+			"isBot": false,
+			"isDead": false,
+			"items": [],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Malzahar",
+			"rawSkinName": "game_character_skin_displayname_Malzahar_5",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Dark Harvest",
+					"id": 8128,
+					"rawDescription": "perk_tooltip_DarkHarvest",
+					"rawDisplayName": "perk_displayname_DarkHarvest"
+				},
+				"primaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 5,
+			"skinName": "Snow Day Malzahar",
+			"summonerName": "Zye2011",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Mark",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerSnowball_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSnowball_DisplayName"
+				}
+			},
+			"team": "ORDER"
+		},
+		{
+			"championName": "Brand",
+			"isBot": false,
+			"isDead": false,
+			"items": [],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Brand",
+			"rawSkinName": "game_character_skin_displayname_Brand_4",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Dark Harvest",
+					"id": 8128,
+					"rawDescription": "perk_tooltip_DarkHarvest",
+					"rawDisplayName": "perk_displayname_DarkHarvest"
+				},
+				"primaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 4,
+			"skinName": "Zombie Brand",
+			"summonerName": "peterDApenguin",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Mark",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerSnowball_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSnowball_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				}
+			},
+			"team": "ORDER"
+		},
+		{
+			"championName": "Cassiopeia",
+			"isBot": false,
+			"isDead": false,
+			"items": [],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Cassiopeia",
+			"rawSkinName": "game_character_skin_displayname_Cassiopeia_9",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Conqueror",
+					"id": 8010,
+					"rawDescription": "perk_tooltip_Conqueror",
+					"rawDisplayName": "perk_displayname_Conqueror"
+				},
+				"primaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Sorcery",
+					"id": 8200,
+					"rawDescription": "perkstyle_tooltip_7202",
+					"rawDisplayName": "perkstyle_displayname_7202"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 9,
+			"skinName": "Spirit Blossom Cassiopeia",
+			"summonerName": "Bent Nickel",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Mark",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerSnowball_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSnowball_DisplayName"
+				}
+			},
+			"team": "ORDER"
+		},
+		{
+			"championName": "Quinn",
+			"isBot": false,
+			"isDead": false,
+			"items": [],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Quinn",
+			"rawSkinName": "game_character_skin_displayname_Quinn_3",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Press the Attack",
+					"id": 8005,
+					"rawDescription": "perk_tooltip_PressTheAttack",
+					"rawDisplayName": "perk_displayname_PressTheAttack"
+				},
+				"primaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 3,
+			"skinName": "Corsair Quinn",
+			"summonerName": "Deadheads",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Clarity",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerMana_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerMana_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				}
+			},
+			"team": "ORDER"
+		},
+		{
+			"championName": "Veigar",
+			"isBot": false,
+			"isDead": false,
+			"items": [],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Veigar",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Dark Harvest",
+					"id": 8128,
+					"rawDescription": "perk_tooltip_DarkHarvest",
+					"rawDisplayName": "perk_displayname_DarkHarvest"
+				},
+				"primaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 0,
+			"summonerName": "Aya PZ",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Heal",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerHeal_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerHeal_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				}
+			},
+			"team": "CHAOS"
+		},
+		{
+			"championName": "Vladimir",
+			"isBot": false,
+			"isDead": false,
+			"items": [
+				{
+					"canUse": true,
+					"consumable": true,
+					"count": 1,
+					"displayName": "Poro-Snax",
+					"itemID": 2052,
+					"price": 0,
+					"rawDescription": "game_item_description_2052",
+					"rawDisplayName": "game_item_displayname_2052",
+					"slot": 6
+				}
+			],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Vladimir",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Arcane Comet",
+					"id": 8229,
+					"rawDescription": "perk_tooltip_ArcaneComet",
+					"rawDisplayName": "perk_displayname_ArcaneComet"
+				},
+				"primaryRuneTree": {
+					"displayName": "Sorcery",
+					"id": 8200,
+					"rawDescription": "perkstyle_tooltip_7202",
+					"rawDisplayName": "perkstyle_displayname_7202"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 0,
+			"summonerName": "Sithlordjarx2",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Mark",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerSnowball_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSnowball_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				}
+			},
+			"team": "CHAOS"
+		},
+		{
+			"championName": "Xayah",
+			"isBot": false,
+			"isDead": false,
+			"items": [
+				{
+					"canUse": true,
+					"consumable": true,
+					"count": 1,
+					"displayName": "Poro-Snax",
+					"itemID": 2052,
+					"price": 0,
+					"rawDescription": "game_item_description_2052",
+					"rawDisplayName": "game_item_displayname_2052",
+					"slot": 6
+				}
+			],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Xayah",
+			"rawSkinName": "game_character_skin_displayname_Xayah_3",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Lethal Tempo",
+					"id": 8008,
+					"rawDescription": "perk_tooltip_LethalTempo",
+					"rawDisplayName": "perk_displayname_LethalTempo"
+				},
+				"primaryRuneTree": {
+					"displayName": "Precision",
+					"id": 8000,
+					"rawDescription": "perkstyle_tooltip_7201",
+					"rawDisplayName": "perkstyle_displayname_7201"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Sorcery",
+					"id": 8200,
+					"rawDescription": "perkstyle_tooltip_7202",
+					"rawDisplayName": "perkstyle_displayname_7202"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 3,
+			"skinName": "SSG Xayah",
+			"summonerName": "TrollYou300O",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Heal",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerHeal_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerHeal_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				}
+			},
+			"team": "CHAOS"
+		},
+		{
+			"championName": "Vel'Koz",
+			"isBot": false,
+			"isDead": false,
+			"items": [
+				{
+					"canUse": true,
+					"consumable": true,
+					"count": 1,
+					"displayName": "Poro-Snax",
+					"itemID": 2052,
+					"price": 0,
+					"rawDescription": "game_item_description_2052",
+					"rawDisplayName": "game_item_displayname_2052",
+					"slot": 6
+				}
+			],
+			"level": 1,
+			"position": "NONE",
+			"rawChampionName": "game_character_displayname_Velkoz",
+			"rawSkinName": "game_character_skin_displayname_Velkoz_1",
+			"respawnTimer": 0.0,
+			"runes": {
+				"keystone": {
+					"displayName": "Arcane Comet",
+					"id": 8229,
+					"rawDescription": "perk_tooltip_ArcaneComet",
+					"rawDisplayName": "perk_displayname_ArcaneComet"
+				},
+				"primaryRuneTree": {
+					"displayName": "Sorcery",
+					"id": 8200,
+					"rawDescription": "perkstyle_tooltip_7202",
+					"rawDisplayName": "perkstyle_displayname_7202"
+				},
+				"secondaryRuneTree": {
+					"displayName": "Domination",
+					"id": 8100,
+					"rawDescription": "perkstyle_tooltip_7200",
+					"rawDisplayName": "perkstyle_displayname_7200"
+				}
+			},
+			"scores": {
+				"assists": 0,
+				"creepScore": 0,
+				"deaths": 0,
+				"kills": 0,
+				"wardScore": 0.0
+			},
+			"skinID": 1,
+			"skinName": "Battlecast Vel'Koz",
+			"summonerName": "DarkAberle",
+			"summonerSpells": {
+				"summonerSpellOne": {
+					"displayName": "Flash",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+				},
+				"summonerSpellTwo": {
+					"displayName": "Mark",
+					"rawDescription": "GeneratedTip_SummonerSpell_SummonerSnowball_Description",
+					"rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSnowball_DisplayName"
+				}
+			},
+			"team": "CHAOS"
+		}
+	],
+	"events": {
+		"Events": []
+	},
+	"gameData": {
+		"gameMode": "ARAM",
+		"gameTime": 0.023185599595308305,
+		"mapName": "Map12",
+		"mapNumber": 12,
+		"mapTerrain": "Default"
 	}
-]
+}
