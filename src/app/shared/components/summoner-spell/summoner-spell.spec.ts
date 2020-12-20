@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PageNotFoundComponent } from './page-not-found.component';
+import { SummonerSpellComponent } from './summoner-spell.component';
 
 describe('PageNotFoundComponent', () => {
-  let component: PageNotFoundComponent;
-  let fixture: ComponentFixture<PageNotFoundComponent>;
+  let component: SummonerSpellComponent;
+  let fixture: ComponentFixture<SummonerSpellComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [PageNotFoundComponent]
+      declarations: [SummonerSpellComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageNotFoundComponent);
+    fixture = TestBed.createComponent(SummonerSpellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

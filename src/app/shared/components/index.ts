@@ -1,1 +1,1 @@
-export * from './page-not-found/page-not-found.component';
+export * from './summoner-spell/summoner-spell.component';

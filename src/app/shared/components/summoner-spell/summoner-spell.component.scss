@@ -1,0 +1,28 @@
+.sum-image {
+  position: relative;
+  text-align: center;
+  height: 100px;
+  width: 100px;
+  .sum-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    font-size: 40px;
+    text-shadow:
+      0.07em 0 black,
+      0 0.07em black,
+      -0.07em 0 black,
+      0 -0.07em black;
+    transform: translate(-50%, -50%);
+  }
+  .sum-spinner {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+  }
+  .mat-progress-spinner {
+    display: inline-block;
+    position: absolute;
+  }
+}

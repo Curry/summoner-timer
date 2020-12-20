@@ -1,11 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { interval, timer } from "rxjs";
-import { takeUntil, tap } from "rxjs/operators";
-import {
-  LocalPlayer,
-  SummonerCooldowns,
-} from "../core/models/local/player.model";
+import { Observable } from "rxjs";
+import { Player } from "../core/models";
 import { RiotService } from "../core/services";
 
 @Component({
@@ -14,23 +9,12 @@ import { RiotService } from "../core/services";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router, private service: RiotService) {}
-  public console = console;
+  constructor(private service: RiotService) {}
+  public allInfo$: Observable<Player[]>;
+  public size = 200;
 
-  ngOnInit(): void {}
-
-  test = this.service
-    .getAllInfo()
-    .pipe(tap((val) => console.log(val.map((ival) => ival.summonerOne.name))));
-
-  potato = (sum: LocalPlayer.SummonerSpell): void => {
-    if (sum.timerObservable) {
-      sum.timerObservable.unsubscribe();
-    }
-    sum.timerObservable = timer(0, 10).pipe(
-      takeUntil(timer(SummonerCooldowns[sum.name] * 1000))
-    ).subscribe(val => sum.timer = val / SummonerCooldowns[sum.name], () => {}, () => {
-      sum.timer = null;
-    });
-  };
+  ngOnInit(): void {
+    this.service.test().subscribe(console.log);
+    this.allInfo$ = this.service.test();
+  }
 }

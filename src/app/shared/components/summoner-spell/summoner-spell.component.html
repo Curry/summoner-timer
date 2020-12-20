@@ -1,0 +1,12 @@
+<div class="sum-image" (click)="startSummonerTimer(summonerSpell)">
+  <img [src]="summonerSpell.image" [width]="size / 2">
+  <div *ngIf="summonerSpell.timer">
+    <div class="sum-spinner">
+      <mat-progress-spinner mode="determinate" [value]="summonerSpell.timer">
+      </mat-progress-spinner>
+    </div>
+    <div class="sum-text">
+      {{ convertToSeconds(summonerSpell) }}
+    </div>
+  </div>
+</div>

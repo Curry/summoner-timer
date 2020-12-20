@@ -1,15 +1,22 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { TranslateModule } from '@ngx-translate/core';
-
-import { PageNotFoundComponent } from './components/';
-import { WebviewDirective } from './directives/';
-import { FormsModule } from '@angular/forms';
+import { SummonerSpellComponent } from "./components/";
+import { WebviewDirective } from "./directives/";
+import { FormsModule } from "@angular/forms";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
-  declarations: [PageNotFoundComponent, WebviewDirective],
-  imports: [CommonModule, TranslateModule, FormsModule],
-  exports: [TranslateModule, WebviewDirective, FormsModule]
+  declarations: [SummonerSpellComponent, WebviewDirective],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+  ],
+  exports: [
+    WebviewDirective,
+    FormsModule,
+    SummonerSpellComponent
+  ],
 })
 export class SharedModule {}
