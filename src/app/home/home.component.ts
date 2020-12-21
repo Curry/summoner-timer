@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   public size = 200;
 
   ngOnInit(): void {
-    this.service.test().subscribe(console.log);
-    this.allInfo$ = this.service.test();
+    this.allInfo$ = this.service.getInfo();
   }
 }

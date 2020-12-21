@@ -1,7 +1,5 @@
 import { Subscription } from "rxjs";
-import { AllPlayer, SummonerSpells } from ".";
-import { Attribute } from "./game.model";
-
+import { AllPlayer } from ".";
 export class SummonerSpell {
   name: string;
   image: string | ArrayBuffer;

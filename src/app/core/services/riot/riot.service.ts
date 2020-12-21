@@ -1,15 +1,40 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AllData, AllPlayer, Player } from "../../models";
-import { forkJoin, from, Observable, Observer, of, timer } from "rxjs";
 import {
+  combineLatest,
+  forkJoin,
+  from,
+  merge,
+  Observable,
+  Observer,
+  of,
+  timer,
+} from "rxjs";
+import {
+  catchError,
   combineAll,
+  concatAll,
   distinctUntilChanged,
+  exhaust,
+  exhaustMap,
+  filter,
   map,
+  mergeAll,
   mergeMap,
+  pluck,
+  scan,
   shareReplay,
+  skipWhile,
+  switchMap,
+  tap,
+  toArray,
 } from "rxjs/operators";
-import * as test from "./testdata.json";
+import * as test1 from "./testdata.json";
+import * as test2 from "./testdata2.json";
+import * as test3 from "./testdata3.json";
+
+export type Image = string | ArrayBuffer;
 
 @Injectable({
   providedIn: "root",
@@ -17,81 +42,83 @@ import * as test from "./testdata.json";
 export class RiotService {
   private version = "10.25.1";
   private dataDragonUrl = "https://ddragon.leagueoflegends.com";
-  private assets$: Observable<Player[]>;
+  private localUrl = "https://127.0.0.1:2999/liveclientdata/allgamedata";
+  private champAssets: {
+    [name: string]: Observable<[Image, Image, Image]>;
+  };
+  private useMockData = true;
+  private toggle = false;
+  private activeTeam: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.champAssets = {};
+  }
 
-  public getAssets = (players: AllPlayer[]) => {
-    if (!this.assets$) {
-      this.assets$ = from(players).pipe(
-        map((player) =>
-          forkJoin([
-            this.getChampionIcon(player.rawChampionName),
-            this.getSummonerIcon(
-              player.summonerSpells.summonerSpellOne.rawDescription
-            ),
-            this.getSummonerIcon(
-              player.summonerSpells.summonerSpellTwo.rawDescription
-            ),
-          ]).pipe(
-            map(
-              ([champIcon, summOneIcon, summTwoIcon]) =>
-                new Player(player, champIcon, summOneIcon, summTwoIcon)
+  public getInfo = (): Observable<Player[]> =>
+    this.getEnemyPlayers().pipe(
+      mergeMap((players) =>
+        from(players).pipe(
+          map((player) =>
+            this.getChampAsset(player).pipe(
+              map(
+                ([champIcon, summOneIcon, summTwoIcon]) =>
+                  new Player(player, champIcon, summOneIcon, summTwoIcon)
+              )
             )
-          )
-        ),
-        combineAll(),
-        shareReplay(1)
-      );
+          ),
+          combineAll()
+        )
+      )
+    );
+
+  private getApi = () => (this.useMockData ? this.testAPI() : this.liveAPI()).pipe(catchError(x => of(undefined as AllData)));
+
+  private testAPI = () => {
+    let toReturn: AllData = (test3 as any).default;
+    if (!this.toggle) {
+      toReturn = (test1 as any).default;
+      this.toggle = !this.toggle;
     }
-    return this.assets$;
+    return of(toReturn);
   };
 
-  public test = () =>
+  private liveAPI = () => this.http.get<AllData>(this.localUrl);
+
+  private getEnemyPlayers = (): Observable<AllPlayer[]> =>
     timer(0, 1000).pipe(
-      mergeMap(() => this.getEnemyPlayers()),
-      distinctUntilChanged(
-        (a, b) => a.map((val) => val.level) !== b.map((val) => val.level)
+      switchMap(() => this.getApi()),
+      distinctUntilChanged(),
+      skipWhile(val => val === undefined),
+      tap(
+        (allData) =>
+          (this.activeTeam = allData.allPlayers.find(
+            (player) => player.summonerName == allData.activePlayer.summonerName
+          ).team)
       ),
-      mergeMap((players) =>
-        this.getAssets(players).pipe(
-          mergeMap((val) =>
-            from(val).pipe(
-              map((player) => {
-                const test = val.findIndex(
-                  (existingPlayer) =>
-                    existingPlayer.summonerName === player.summonerName
-                );
-                if (val[test].level !== player.level) {
-                  val[test].level = player.level;
-                  val[test].updateSummonerCds();
-                }
-                return of(val[test]);
-              }),
-              combineAll()
-            )
-          )
-        )
+      pluck("allPlayers"),
+      map((players) =>
+        players.filter((player) => player.team !== this.activeTeam)
       )
     );
 
-  public getEnemyPlayers = (): Observable<AllPlayer[]> =>
-    of((test as any).default as AllData).pipe(
-      map((allData) =>
-        allData.allPlayers.filter(
-          (player) =>
-            player.team !=
-            allData.allPlayers.find(
-              (player) =>
-                player.summonerName == allData.activePlayer.summonerName
-            ).team
-        )
-      )
-    );
+  private getChampAsset = (
+    player: AllPlayer
+  ): Observable<[Image, Image, Image]> => {
+    if (!this.champAssets[player.championName]) {
+      this.champAssets[player.championName] = forkJoin([
+        this.getChampionIcon(player.rawChampionName),
+        this.getSummonerIcon(
+          player.summonerSpells.summonerSpellOne.rawDescription
+        ),
+        this.getSummonerIcon(
+          player.summonerSpells.summonerSpellTwo.rawDescription
+        ),
+      ]).pipe(shareReplay(1));
+    }
+    return this.champAssets[player.championName];
+  };
 
-  private getChampionIcon = (
-    rawName: string
-  ): Observable<string | ArrayBuffer> =>
+  private getChampionIcon = (rawName: string): Observable<Image> =>
     this.http
       .get(
         `${this.dataDragonUrl}/cdn/${this.version}/img/champion/${
@@ -103,13 +130,11 @@ export class RiotService {
       )
       .pipe(mergeMap(this.parseImage));
 
-  private getSummonerIcon = (
-    rawName: string
-  ): Observable<string | ArrayBuffer> =>
+  private getSummonerIcon = (rawName: string): Observable<Image> =>
     this.http
       .get(
         `${this.dataDragonUrl}/cdn/${this.version}/img/spell/${
-          /_(Summoner(?!Spell).*?)_/.exec(rawName)[1]
+          /_((Summoner(?!Spell)[A-Z]{1}[a-z]*).*)_/.exec(rawName)[2]
         }.png`,
         {
           responseType: "blob",
@@ -118,7 +143,7 @@ export class RiotService {
       .pipe(mergeMap(this.parseImage));
 
   private parseImage = (blob: Blob) =>
-    new Observable((observer: Observer<string | ArrayBuffer>) => {
+    new Observable((observer: Observer<Image>) => {
       const reader = new FileReader();
       reader.addEventListener(
         "load",
