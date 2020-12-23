@@ -1,38 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { AllData, AllPlayer, Player } from "../../models";
-import {
-  combineLatest,
-  forkJoin,
-  from,
-  merge,
-  Observable,
-  Observer,
-  of,
-  timer,
-} from "rxjs";
+import { AllPlayer, Player } from "../../models";
+import { forkJoin, from, Observable, Observer, of, timer } from "rxjs";
 import {
   catchError,
   combineAll,
-  concatAll,
   distinctUntilChanged,
-  exhaust,
-  exhaustMap,
-  filter,
   map,
-  mergeAll,
   mergeMap,
-  pluck,
-  scan,
   shareReplay,
   skipWhile,
   switchMap,
-  tap,
-  toArray,
 } from "rxjs/operators";
-import * as test1 from "./testdata.json";
-import * as test2 from "./testdata2.json";
-import * as test3 from "./testdata3.json";
 
 export type Image = string | ArrayBuffer;
 
@@ -40,22 +19,33 @@ export type Image = string | ArrayBuffer;
   providedIn: "root",
 })
 export class RiotService {
-  private version = "10.25.1";
+  private version$: Observable<string>;
   private dataDragonUrl = "https://ddragon.leagueoflegends.com";
-  private localUrl = "https://127.0.0.1:2999/liveclientdata/allgamedata";
+  private localUrl = "https://127.0.0.1:2999/liveclientdata";
   private champAssets: {
     [name: string]: Observable<[Image, Image, Image]>;
   };
-  private useMockData = true;
-  private toggle = false;
-  private activeTeam: string;
 
   constructor(private http: HttpClient) {
     this.champAssets = {};
   }
 
+  public get version(): Observable<string> {
+    if (!this.version$) {
+      this.version$ = this.http
+        .get<string[]>(`${this.dataDragonUrl}/api/versions.json`)
+        .pipe(
+          map((versions) => versions[0]),
+          shareReplay(1)
+        );
+    }
+    return this.version$;
+  }
+
   public getInfo = (): Observable<Player[]> =>
-    this.getEnemyPlayers().pipe(
+    timer(0, 1000).pipe(
+      switchMap(this.getEnemyPlayers),
+      distinctUntilChanged((x, y) => JSON.stringify(x) === JSON.stringify(y)),
       mergeMap((players) =>
         from(players).pipe(
           map((player) =>
@@ -71,33 +61,35 @@ export class RiotService {
       )
     );
 
-  private getApi = () => (this.useMockData ? this.testAPI() : this.liveAPI()).pipe(catchError(x => of(undefined as AllData)));
+  private getActivePlayer = (): Observable<string> =>
+    this.http
+      .get(`${this.localUrl}/activeplayername`, {
+        headers: {
+          rejectUnauthorized: "false",
+        },
+        responseType: "text",
+      })
+      .pipe(catchError(() => of("")));
 
-  private testAPI = () => {
-    let toReturn: AllData = (test3 as any).default;
-    if (!this.toggle) {
-      toReturn = (test1 as any).default;
-      this.toggle = !this.toggle;
-    }
-    return of(toReturn);
-  };
-
-  private liveAPI = () => this.http.get<AllData>(this.localUrl);
+  private getPlayerList = (): Observable<AllPlayer[]> =>
+    this.http.get<AllPlayer[]>(`${this.localUrl}/playerlist`, {
+      headers: {
+        rejectUnauthorized: "false",
+      },
+    });
 
   private getEnemyPlayers = (): Observable<AllPlayer[]> =>
-    timer(0, 1000).pipe(
-      switchMap(() => this.getApi()),
-      distinctUntilChanged(),
-      skipWhile(val => val === undefined),
-      tap(
-        (allData) =>
-          (this.activeTeam = allData.allPlayers.find(
-            (player) => player.summonerName == allData.activePlayer.summonerName
-          ).team)
-      ),
-      pluck("allPlayers"),
-      map((players) =>
-        players.filter((player) => player.team !== this.activeTeam)
+    this.getActivePlayer().pipe(
+      skipWhile((x) => x === ""),
+      mergeMap((name) =>
+        this.getPlayerList().pipe(
+          map((players) => {
+            const activeTeam = players.find(
+              (player) => player.summonerName == name
+            ).team;
+            return players.filter((player) => player.team !== activeTeam);
+          })
+        )
       )
     );
 
@@ -119,28 +111,37 @@ export class RiotService {
   };
 
   private getChampionIcon = (rawName: string): Observable<Image> =>
-    this.http
-      .get(
-        `${this.dataDragonUrl}/cdn/${this.version}/img/champion/${
-          /_([^_]+)$/.exec(rawName)[1]
-        }.png`,
-        {
-          responseType: "blob",
-        }
+    this.version
+      .pipe(
+        mergeMap((version) =>
+          this.http.get(
+            `${this.dataDragonUrl}/cdn/${version}/img/champion/${
+              /_([^_]+)$/.exec(rawName)[1]
+            }.png`,
+            {
+              responseType: "blob",
+            }
+          )
+        ),
+        mergeMap(this.parseImage)
       )
-      .pipe(mergeMap(this.parseImage));
+
+      .pipe();
 
   private getSummonerIcon = (rawName: string): Observable<Image> =>
-    this.http
-      .get(
-        `${this.dataDragonUrl}/cdn/${this.version}/img/spell/${
-          /_((Summoner(?!Spell)[A-Z]{1}[a-z]*).*)_/.exec(rawName)[2]
-        }.png`,
-        {
-          responseType: "blob",
-        }
-      )
-      .pipe(mergeMap(this.parseImage));
+    this.version.pipe(
+      mergeMap((version) =>
+        this.http.get(
+          `${this.dataDragonUrl}/cdn/${version}/img/spell/${
+            /_((Summoner(?!Spell)[A-Z]{1}[a-z]*).*)_/.exec(rawName)[2]
+          }.png`,
+          {
+            responseType: "blob",
+          }
+        )
+      ),
+      mergeMap(this.parseImage)
+    );
 
   private parseImage = (blob: Blob) =>
     new Observable((observer: Observer<Image>) => {

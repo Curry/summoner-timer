@@ -1,5 +1,5 @@
 {
-  "productName": "angular-electron",
+  "productName": "summoner-timer",
   "directories": {
     "output": "release/"
   },
@@ -22,7 +22,7 @@
   "win": {
     "icon": "dist/assets/icons",
     "target": [
-      "msi"
+      "portable"
     ]
   },
   "mac": {
