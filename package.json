@@ -1,6 +1,10 @@
 {
   "name": "summoner-timer",
   "version": "0.0.1",
+  "description": "League of Legends Summoner Timer Tracker",
+  "author": {
+    "name": "Akaash"
+  },
   "main": "main.js",
   "private": true,
   "scripts": {

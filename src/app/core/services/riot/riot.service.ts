@@ -66,6 +66,7 @@ export class RiotService {
       .get(`${this.localUrl}/activeplayername`, {
         headers: {
           rejectUnauthorized: "false",
+          insecure: "true",
         },
         responseType: "text",
       })
@@ -75,6 +76,7 @@ export class RiotService {
     this.http.get<AllPlayer[]>(`${this.localUrl}/playerlist`, {
       headers: {
         rejectUnauthorized: "false",
+        insecure: "true",
       },
     });
 
